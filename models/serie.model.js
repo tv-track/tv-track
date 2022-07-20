@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const serieSchema = new Schema({
     title: {
         type: String,
-        required: true,
+        required: "Series title is required",
         trim: true
     },
     image: String,

@@ -1,1 +1,14 @@
-new serie
+<div class="row justify-content-md-center">
+    <div class="col-12 col-md-6 col-lg-3">
+        <h2 class="mt-2">New Serie</h2>
+        <form action="/new-serie" method="post">
+            <div class="input-group mb-3">
+                <input type="text" name="title" value="{{serie.title}}" class="form-control {{#if errors.title}}is-invalid{{/if}}" placeholder="Title">
+                {{#if errors.title}}<div class="invalid-feedback">{{errors.title}}</div>{{/if}}
+            </div>
+        <button type="submit" class="btn btn-primary">Add Serie</button>
+        </form>
+    </div>
+    
+    
+</div>
