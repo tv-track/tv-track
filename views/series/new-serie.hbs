@@ -3,8 +3,35 @@
         <h2 class="mt-2">New Serie</h2>
         <form action="/new-serie" method="post">
             <div class="input-group mb-3">
-                <input type="text" name="title" value="{{serie.title}}" class="form-control {{#if errors.title}}is-invalid{{/if}}" placeholder="Title">
-                {{#if errors.title}}<div class="invalid-feedback">{{errors.title}}</div>{{/if}}
+                <input type="text" name="title" value="{{ serie.title }}" class="form-control {{#if errors.title}}is-invalid{{/if}}" placeholder="Title">
+                {{#if errors.title}}<div class="invalid-feedback">{{ errors.title }}</div>{{/if}}
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" name="image" value="{{serie.image}}" class="form-control {{#if errors.image}}is-invalid{{/if}}" placeholder="URL Image">
+                {{#if errors.image}}<div class="invalid-feedback">{{errors.image}}</div>{{/if}}
+            </div>
+            <div class="input-group mb-3">
+                <textarea name="description" {{!-- cols="30" --}} rows="10" class="form-control" ></textarea>
+            </div>
+            <div class="input-group mb-3">
+                <select name="platform" class="form-select" >
+                    <option value="Movistar+">Movistar+</option>
+                    <option value="HBO Max">HBO Max</option>
+                    <option value="Netflix">Netflix</option>
+                    <option value="Amazon Prime">Amazon Prime</option>
+                    <option value="Disney+">Disney+</option>
+                    <option value="Apple TV">Apple TV</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <select name="status" class="form-select" >
+                    <option value="Finished">Finished</option>
+                    <option value="Still running">Still running</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <input type="number" name="rating" step="0.1" class="form-control">
             </div>
         <button type="submit" class="btn btn-primary">Add Serie</button>
         </form>

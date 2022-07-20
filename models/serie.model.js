@@ -8,7 +8,20 @@ const serieSchema = new Schema({
         required: "Series title is required",
         trim: true
     },
-    image: String,
+    image: {
+        type: String,
+        validate: {
+            validator: function(image) {
+                try {
+                    new URL(image)
+                    return true
+                } catch(error) {
+                    return false
+                }
+            },
+            message: (image) => "Invalid URL"
+        }
+    },
     description: String,
     platform: {
         type: String,
@@ -32,6 +45,12 @@ const serieSchema = new Schema({
         min: 0,
         max: 10
     }
+})
+
+serieSchema.pre("validate", function(next) {
+    this.image = this.image || undefined
+    this.description = this.description || undefined
+    next()
 })
 
 const Serie = mongoose.model("Serie", serieSchema)

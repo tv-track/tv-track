@@ -19,7 +19,10 @@ module.exports.newSerie = (req, res , next) => {
 module.exports.createSerie = (req, res, next) => {
     const serie = req.body;
     Serie.create(serie)
-        .then((serie) => res.redirect("/"))
+        .then((serie) => {
+            console.log("Created")
+            res.redirect("/")
+        })
         .catch((error) => {
             if (error instanceof mongoose.Error.ValidationError) {
                 console.error(error)
