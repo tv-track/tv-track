@@ -10,6 +10,7 @@ const serieSchema = new Schema({
     },
     image: {
         type: String,
+        default: "https://us.123rf.com/450wm/avectors/avectors1808/avectors180800182/111902588-sin-tarjeta-de-prueba-de-color-de-tv-de-se%C3%B1al-de-patr%C3%B3n-de-barras-vectoriales.jpg?ver=6",
         validate: {
             validator: function(image) {
                 try {
@@ -19,7 +20,7 @@ const serieSchema = new Schema({
                     return false
                 }
             },
-            message: (image) => "Invalid URL"
+            message: image => "Invalid URL"
         }
     },
     description: String,

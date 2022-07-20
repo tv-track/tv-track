@@ -10,7 +10,10 @@ const Serie = require("../models/serie.model")
 // };
 
 module.exports.list = (req, res, next) => {
-    res.render("index")
+    Serie.find()
+        .then((series) => res.render("index", { series }))
+        .catch((error) => next(error))
+    
 }
 
 module.exports.newSerie = (req, res , next) => {

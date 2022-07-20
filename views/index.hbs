@@ -1,4 +1,23 @@
-Homepage
+<a href="/new-serie" class="btn btn-danger">New Serie</a>
 
-
-<a href="/new-serie">New Serie</a>
+<div class="row">
+  {{#each series as |serie|}}
+    <div class="col-12 {{!-- col-sm-8 --}} col-md-6 col-lg-3">
+      <div class="card mb-4">
+        <img src="{{serie.image}}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{serie.title}}</h5>
+          <p class="card-text">{{serie.description}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{serie.platform}}</li>
+          <li class="list-group-item">{{serie.status}}</li>
+          <li class="list-group-item">{{serie.rating}}</li>
+        </ul>
+        <div class="card-body">
+          <a href="/serie/{{serie.id}}" class="card-link">Details</a>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
