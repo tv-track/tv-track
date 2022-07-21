@@ -38,7 +38,7 @@ const chapterSchema = new Schema({
   },
 });
 
-serieSchema.pre("validate", function (next) {
+chapterSchema.pre("validate", function (next) {
   this.image = this.image || undefined;
   this.description = this.description || undefined;
   next();
