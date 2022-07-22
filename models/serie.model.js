@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const serieSchema = new Schema({
-  id: Number,
+  //id: Number,
   name: {
     type: String,
     required: "Series title is required",

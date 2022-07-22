@@ -1,8 +1,8 @@
 require("../config/db.config");
-const { Serie } = require("../models");
+const { Serie, Season } = require("../models");
 
 const series = [
-  {
+ {
     id: 32157,
     name: "Rick and Morty",
     network: "Adult Swim",

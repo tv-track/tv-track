@@ -40,13 +40,14 @@ module.exports.seasons = (req, res, next) => {
 
   Serie.findById(req.params.id)
     .then((serie) => {
-      if (serie) {
-        return Season.find().then((seasons) =>
-          res.render("series/series-detail", { seasons, serie })
-        );
+     /*  if (serie) {
+        return Season.find()
+        .then((seasons) => */
+          res.render("series/series-detail", { /* seasons, */ serie })
+        /* );
       } else {
         return res.redirect("/");
-      }
+      } */
     })
     .catch((error) => next(error));
 };

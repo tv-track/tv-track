@@ -1,9 +1,29 @@
-<h1>{{serie.title}}</h1>
-<hr>
+<h1>{{serie.name}}</h1>
+<hr />
 
-<a href="/serie/{{serie.id}}/new-season" class="btn btn-secondary">Add Seasons</a>
+<a href="/" class="btn btn-secondary">Go back</a>
 
-{{#each seasons as |season|}}
-<h3>{{season.title}}</h3>
+{{!-- {{#each seasons as |season|}}
+<div class="collapse" id="navbarToggleExternalContent">
+  <div class="bg-dark p-4">
+    <h5 class="text-white h4">Collapsed content</h5>
+    <span class="text-muted">Toggleable via the navbar brand.</span>
+  </div>
+</div>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <h1 style="color:white">{{season.season}}</h1>
+  </div>
+</nav>
+{{/each}} --}}
+
+{{#each serie.episodes as |episode|}}    
+        <h3>Season: {{episode.season}}</h3>
+        <h3>Episode: {{episode.episode}}</h3>
+        <h3>Name: {{episode.name}}</h3>
+        <hr>    
 {{/each}}
 
