@@ -1,23 +1,29 @@
 <a href="/new-serie" class="btn btn-danger">New Serie</a>
 
-<div class="row">
+<div class="row justify-content-center ms-3 me-3">
   {{#each series as |serie|}}
-    <div class="col-12 {{!-- col-sm-8 --}} col-md-6 col-lg-3">
-      <div class="card mb-4">
-        <img src="{{serie.image}}" class="card-img-top" alt="Image not avalaible" id="series-img" />
-        <div class="card-body">
-          <h5 class="card-title">{{serie.name}}</h5>
-          <p class="card-text">{{serie.description}}</p>
+  <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+    <div class="card bg-secondary text-light mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{serie.image}}" class="img-fluid rounded-start" style="height: 280px" alt="Image not available" id="series-img" />
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{serie.network}}</li>
-          <li class="list-group-item">{{serie.status}}</li>
-          <li class="list-group-item"><i class="bi bi-star me-2"></i>{{serie.rating}}</li>
-        </ul>
-        <div class="card-body">
-          <a href="/serie/{{serie.id}}" class="card-link">Details</a>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{serie.name}}</h5>
+            {{!-- <p class="card-text">{{serie.description}}</p> --}}
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Network:</b> {{serie.network}}</li>
+            <li class="list-group-item"><b>Status:</b> {{serie.status}}</li>
+            <li class="list-group-item"><i class="bi bi-star me-2"></i>{{serie.rating}}</li>
+          </ul>
+          <div class="d-grid align-center mt-4 mb-4">
+            <a href="/serie/{{serie.id}}" class="btn text-light">More about this serie ...</a>
+          </div>
         </div>
       </div>
     </div>
+  </div>
   {{/each}}
 </div>

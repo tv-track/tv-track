@@ -1,7 +1,35 @@
-<h1>{{serie.name}}</h1>
-<hr />
+{{!-- <div class="container d-flex justify-content-around">
+  <div class="col-6">
+      <img src="{{serie.image}}" class="img-fluid rounded-start mt-4" style="height: 300px" alt="Image not available"/>
+  </div>
+  <div class="mt-5">
+    <h1>{{serie.name}}</h1>
+    <hr />
+    <h4>{{serie.description}}</h4>
+  </div>
+</div>
+<hr> --}}
 
-<a href="/" class="btn btn-secondary">Go back</a>
+<div class="card mb-3">
+  <div class="row g-0 m-3">
+    <div class="col-md-2">
+      <img src="{{serie.image}}" class="img-fluid rounded-start" alt="Image not available" style="width: 200px;">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title">{{serie.name}}</h5>
+        <p class="card-text">{{serie.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class="d-flex justify-content-end mb-3">
+  <a href="/user" class="btn btn-warning me-3">Add to favorites</a>
+  <a href="/" class="btn btn-secondary me-5">Go back</a>
+</div>
+
 
 {{!-- {{#each seasons as |season|}}
 <div class="collapse" id="navbarToggleExternalContent">
@@ -20,10 +48,59 @@
 </nav>
 {{/each}} --}}
 
+<div class="row">
+  {{#each serie.episodes as |episode|}}    
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+        <div class="card mb-3" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Season: {{episode.season}}</li>
+              <li class="list-group-item">Episode: {{episode.episode}}</li>
+              <li class="list-group-item"><b>{{episode.name}}</b></li>
+            </ul>
+        </div>
+    </div>
+  {{/each}}
+
+</div>
+
+
+{{!-- {{#each this}}
+  {{#episodes}}
+    {{#unless episodes.season}}   
+        <h3>Season: {{season}}</h3>
+        <h3>Episode: {{episode}}</h3>
+        <h3>Name: {{name}}</h3>
+        <hr>
+        {{else}}
+        <h3>Episode: {{episode}}</h3>
+        <h3>Name: {{name}}</h3>
+        <hr>
+    {{/unless}}
+  {{/episodes}}   
+{{/each}} --}}
+{{!-- 
 {{#each serie.episodes as |episode|}}    
         <h3>Season: {{episode.season}}</h3>
         <h3>Episode: {{episode.episode}}</h3>
         <h3>Name: {{episode.name}}</h3>
         <hr>    
-{{/each}}
+{{/each}} --}}
+
+{{!-- <script id="document-template" type="text/x-handlebars-template">
+    <div>
+        {{#each this}}
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>{{Category}}</h2>
+                        {{#DocumentList}}
+                            <p>{{DocumentName}} at {{DocumentLocation}}</p>
+                        {{/DocumentList}}
+                </div>
+            </div>
+        {{/each}}
+        
+            <p>There are no documents available at this time</p>
+        
+    </div>
+</script> --}}
 
