@@ -32,10 +32,6 @@ const episodeSchema = new Schema({
       message: (image) => "Invalid URL",
     },
   },
-  following: {
-    type: String,
-    enum: ["yes", "no"],
-  },
 });
 
 episodeSchema.pre("validate", function (next) {

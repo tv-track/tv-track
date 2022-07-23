@@ -39,6 +39,7 @@ module.exports.detail = (req, res, next) => {
   //  const { serieId } = req.params.id;
 
   Serie.findById(req.params.id)
+    .populate("episodes")
     .then((serie) => {
      /*  if (serie) {
         return Season.find()
@@ -63,11 +64,12 @@ module.exports.createEpisode = (req, res, next) => {
 module.exports.doCreateEpisode = (req, res, next) => {
   Serie.findById(req.params.serieId)
     .then((serie) => {
-      return Episode.create(req.body)
-        .populate("Serie")
+      const serieData = req.body
+      serieData.serie = req.params.serieId
+      return Episode.create(serieData)
         .then((episode) => {
           console.log("Episode created");
-          res.redirect("/");
+          res.redirect(`/serie/${req.params.serieId}`);
         })
     })
     .catch(error => console.error(error))

@@ -46,11 +46,12 @@ const serieSchema = new Schema({
     min: 0,
     max: 10,
   },
-  episodes: [{
-    season: Number,
-    episode: Number,
-    name: String
-  }]
+});
+
+serieSchema.virtual('episodes', {
+  ref: 'Episode',
+  localField: '_id',
+  foreignField: 'serie',
 });
 
 serieSchema.pre("validate", function (next) {
