@@ -1,13 +1,23 @@
 <div class="row justify-content-md-center">
     <div class="col-12 col-md-6 col-lg-3">
-        <h2 class="mt-2">New Episode</h2>
-        <form action="/serie/{{serie.id}}/new-episode" method="post">
+        <h2 class="mt-2">New Episode from {{serie.name}}</h2>
+        <form action="/serie/{{serie.id}}/new-episode" method="post">            
             <div class="input-group mb-3">
-                <input type="text" name="title" value="{{ season.title }}" class="form-control {{#if errors.title}}is-invalid{{/if}}" placeholder="Season Title">
-                {{#if errors.title}}<div class="invalid-feedback">{{ errors.title }}</div>{{/if}}
+                <input type="number" name="season" value="{{ episode.season }}" class="form-control {{#if errors.season}}is-invalid{{/if}}" placeholder="Season number">
+                {{#if errors.season}}<div class="invalid-feedback">{{ errors.season }}</div>{{/if}}
             </div>
-            
-        <button type="submit" class="btn btn-primary">Add season</button>
+            <div class="input-group mb-3">
+                <input type="number" name="episode" value="{{ episode.episode }}" class="form-control {{#if errors.episode}}is-invalid{{/if}}" placeholder="episode number">
+                {{#if errors.episode}}<div class="invalid-feedback">{{ errors.episode }}</div>{{/if}}
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" name="name" value="{{ episode.name }}" class="form-control {{#if errors.name}}is-invalid{{/if}}" placeholder="Episode name">
+                {{#if errors.name}}<div class="invalid-feedback">{{ errors.name }}</div>{{/if}}
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Add episode</button>
+            </div>
+        
         </form>
     </div>
     

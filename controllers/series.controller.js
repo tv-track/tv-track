@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Serie, Season } = require("../models");
+const { Serie, Episode } = require("../models");
 
 // module.exports.list = (req, res, next) => {
 //     Serie.find()
@@ -35,7 +35,7 @@ module.exports.createSerie = (req, res, next) => {
     });
 };
 
-module.exports.seasons = (req, res, next) => {
+module.exports.detail = (req, res, next) => {
   //  const { serieId } = req.params.id;
 
   Serie.findById(req.params.id)
@@ -53,12 +53,28 @@ module.exports.seasons = (req, res, next) => {
 };
 
 module.exports.createEpisode = (req, res, next) => {
-  
-  res.render("series/new-season");
+  Serie.findById(req.params.serieId)
+    .then((serie) => {
+      res.render("series/new-episode", { serie } );
+    })
+    .catch(error => console.error(error))
 };
 
 module.exports.doCreateEpisode = (req, res, next) => {
-  const season = {
+  Serie.findById(req.params.serieId)
+    .then((serie) => {
+      return Episode.create(req.body)
+        .populate("Serie")
+        .then((episode) => {
+          console.log("Episode created");
+          res.redirect("/");
+        })
+    })
+    .catch(error => console.error(error))
+
+
+
+  /* const season = {
     ...req.body,
     serie: req.serie.id,
   };
@@ -68,5 +84,5 @@ module.exports.doCreateEpisode = (req, res, next) => {
       console.log("Season created");
       res.redirect("/");
     })
-    .catch((error) => next(error));
+    .catch((error) => next(error)); */
 };

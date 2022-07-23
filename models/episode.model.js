@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const episodeSchema = new Schema({
-  title: {
+  name: {
     type: String,
     required: "Episode title is required",
   },
@@ -15,10 +15,7 @@ const episodeSchema = new Schema({
     type: Number,
     min: 0,
   },
-  duration: {
-    type: Number,
-    required: true,
-  },
+  episode: Number,
   image: {
     type: String,
     default:
@@ -34,12 +31,6 @@ const episodeSchema = new Schema({
       },
       message: (image) => "Invalid URL",
     },
-  },
-  description: String,
-  rating: {
-    type: Number,
-    min: 0,
-    max: 10,
   },
   following: {
     type: String,

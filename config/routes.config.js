@@ -3,7 +3,7 @@ const router = express.Router();
 const series = require("../controllers/series.controller")
 
 router.get("/", series.list);
-router.get("/serie/:id", series.seasons);
+router.get("/serie/:id", series.detail);
 
 // router.get("/register", )
 
