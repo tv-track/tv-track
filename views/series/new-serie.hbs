@@ -3,8 +3,8 @@
         <h2 class="mt-2">New Serie</h2>
         <form action="/new-serie" method="post">
             <div class="input-group mb-3">
-                <input type="text" name="title" value="{{ serie.title }}" class="form-control {{#if errors.title}}is-invalid{{/if}}" placeholder="Title">
-                {{#if errors.title}}<div class="invalid-feedback">{{ errors.title }}</div>{{/if}}
+                <input type="text" name="name" value="{{ serie.name }}" class="form-control {{#if errors.name}}is-invalid{{/if}}" placeholder="Serie name">
+                {{#if errors.name}}<div class="invalid-feedback">{{ errors.name }}</div>{{/if}}
             </div>
             <div class="input-group mb-3">
                 <input type="text" name="image" value="{{serie.image}}" class="form-control {{#if errors.image}}is-invalid{{/if}}" placeholder="URL Image">

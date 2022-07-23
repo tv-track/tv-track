@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "hbs": "^4.2.0",
     "mongoose": "^6.4.5",
@@ -11,7 +12,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon -e js,css,html,hbs app.js"
+    "dev": "nodemon -e js,css,html,hbs app.js",
+    "seed": "node bin/seed.js"
   },
   "repository": {
     "type": "git",

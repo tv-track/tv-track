@@ -9,8 +9,8 @@ router.get("/serie/:id", series.seasons);
 
 router.get("/new-serie", series.newSerie)
 router.post("/new-serie", series.createSerie)
-router.get("/serie/:id/new-season", series.createSeason)
-router.post("/serie/:id/new-season", series.doCreateSeason)
+router.get("/serie/:serieId/new-episode", series.createEpisode)
+router.post("/serie/:serieId/new-episode", series.doCreateEpisode)
 
 
 module.exports = router;

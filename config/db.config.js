@@ -1,10 +1,10 @@
 const mongoose = require("mongoose")
 
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/tv-tracker"
+
 mongoose
-    .connect("mongodb://localhost/tv-tracker")
-    .then(() => console.info("Connected do DB"))
+    .connect(MONGODB_URI)
+    .then(() => console.info("Connected to DB"))
     .catch(() => console.error("Error DB", error))
 
 
-// DB Iván: "mongodb+srv://Ivan:VM6ivYYS6r6ekGD@cluster0.ybodnrm.mongodb.net/test"
-// DB Adrián: "mongodb://localhost/tv-tracker"

@@ -1,10 +1,19 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const chapterSchema = new Schema({
+const episodeSchema = new Schema({
   title: {
     type: String,
-    required: "Chapter title is required",
+    required: "Episode title is required",
+  },
+  serie: {
+    type: Schema.Types.ObjectId,
+    ref: "Serie",
+    required: "Serie is required"
+  },
+  season: {
+    type: Number,
+    min: 0,
   },
   duration: {
     type: Number,
@@ -38,11 +47,11 @@ const chapterSchema = new Schema({
   },
 });
 
-chapterSchema.pre("validate", function (next) {
+episodeSchema.pre("validate", function (next) {
   this.image = this.image || undefined;
   this.description = this.description || undefined;
   next();
 });
 
-const Chapter = mongoose.model("Chapter", chapterSchema);
-module.exports = Chapter;
+const Episode = mongoose.model("Episode", episodeSchema);
+module.exports = Episode;

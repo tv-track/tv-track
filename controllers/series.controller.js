@@ -52,11 +52,12 @@ module.exports.seasons = (req, res, next) => {
     .catch((error) => next(error));
 };
 
-module.exports.createSeason = (req, res, next) => {
+module.exports.createEpisode = (req, res, next) => {
+  
   res.render("series/new-season");
 };
 
-module.exports.doCreateSeason = (req, res, next) => {
+module.exports.doCreateEpisode = (req, res, next) => {
   const season = {
     ...req.body,
     serie: req.serie.id,
