@@ -41,14 +41,11 @@ module.exports.detail = (req, res, next) => {
   Serie.findById(req.params.id)
     .populate("episodes")
     .then((serie) => {
-     /*  if (serie) {
-        return Season.find()
-        .then((seasons) => */
-          res.render("series/series-detail", { /* seasons, */ serie })
-        /* );
+      if (serie) {
+        res.render("series/series-detail", { serie })
       } else {
-        return res.redirect("/");
-      } */
+        res.redirect("/");
+      }
     })
     .catch((error) => next(error));
 };

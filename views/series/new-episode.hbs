@@ -1,6 +1,12 @@
 <div class="row justify-content-md-center">
     <div class="col-12 col-md-6 col-lg-3">
-        <h2 class="mt-2">New Episode from {{serie.name}}</h2>
+        <div class="d-flex flex-column align-items-center mt-3">
+            <img src="{{serie.image}}" alt="No image available" style="width: 50%;">
+            <div class="d-flex flex-column aling-items-center mt-2 mb-2">
+                <h2 style="text-align: center;">New Episode from:</h2>
+                <h2 style="text-align: center;">{{serie.name}}</h2>
+            </div>
+        </div>
         <form action="/serie/{{serie.id}}/new-episode" method="post">            
             <div class="input-group mb-3">
                 <input type="number" name="season" value="{{ episode.season }}" class="form-control {{#if errors.season}}is-invalid{{/if}}" placeholder="Season number">
