@@ -14,8 +14,13 @@ const episodeSchema = new Schema({
   season: {
     type: Number,
     min: 0,
+    required: "Season number is required"
   },
-  episode: Number,
+  episode: {
+    type: Number,
+    min: 0,
+    required: "Episode number is required"
+  },
   image: {
     type: String,
     default:
