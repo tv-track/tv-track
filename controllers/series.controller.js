@@ -60,17 +60,22 @@ module.exports.createEpisode = (req, res, next) => {
 
 // a comprobar desde aquí
 module.exports.doCreateEpisode = (req, res, next) => {
-  function renderWithErrors(error) {
-    res.render("series/new-episode", {
-      serie: req.params.serieId,
+  const serieData = req.body
+  serieData.serie = req.params.serieId
+
+  function renderWithErrors(errors) {      
+    console.log(serieData)
+    res.status(400).render("series/new-episode", {
+      serie: serieData,
+      episode: req.body,
       errors
     })
   }
 
+ 
+
   Serie.findById(req.params.serieId)
-    .then((serie) => {
-      const serieData = req.body
-      serieData.serie = req.params.serieId
+      .then((serie) => {
       if (!serie) {
         renderWithErrors({ serie:"This serie doesn't exist" })
       } else {
