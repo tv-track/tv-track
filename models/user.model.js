@@ -22,7 +22,7 @@ const userSchema = new Schema({
     required: "Email is required",
     trim: true,
     lowercase: true,
-    unique: true,
+    // unique: [true, "This email is already used"],
     match: [EMAIL_PATTERN, "Invalid email"],
   },
   bio: {
@@ -52,6 +52,10 @@ userSchema.pre("save", function (next) {
     next();
   }
 });
+
+userSchema.methods.checkPassword = function(passwordToCheck) {
+  return bcrypt.compare(passwordToCheck, this.password)
+}
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
