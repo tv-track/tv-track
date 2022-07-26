@@ -36,13 +36,20 @@ module.exports.createSerie = (req, res, next) => {
 };
 
 module.exports.detail = (req, res, next) => {
-  //  const { serieId } = req.params.id;
 
   Serie.findById(req.params.id)
     .populate("episodes")
     .then((serie) => {
       if (serie) {
-        res.render("series/series-detail", { serie })
+        const data = serie.episodes
+          .sort((a, b) => a.season - b.season)
+          .reduce((acc, el) => {
+          acc[el.season] = (acc[el.season] || []).sort((a, b) => a.episode - b.episode)
+          acc[el.season].push(el)
+          return acc
+        }, {})
+        return res.json(data)
+        res.render("series/series-detail", { serie, data })
       } else {
         res.redirect("/");
       }
