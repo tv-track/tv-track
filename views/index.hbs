@@ -17,7 +17,11 @@
             <li class="list-group-item"><i class="bi bi-star me-2"></i>{{serie.rating}}</li>
           </ul>
           <div class="d-grid align-center mt-4 mb-4">
+          {{#if ...currentUser}}
             <a href="/serie/{{serie.id}}" class="btn text-light">More about this serie ...</a>
+          {{else}}
+            <a href="/login" class="btn text-light">More about this serie ...</a>
+          {{/if}}
           </div>
         </div>
       </div>

@@ -3,9 +3,11 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const createError = require("http-errors");
+const logger = require("morgan");
 
 app.set("views", __dirname + "/views");
 app.set("view engine", "hbs");
+app.use(logger("dev"))
 app.use(express.static(`${__dirname}/public`));
 app.use(express.urlencoded({ extended: false }));
 

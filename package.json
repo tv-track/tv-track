@@ -8,6 +8,7 @@
     "hbs": "^4.2.0",
     "http-errors": "^2.0.0",
     "mongoose": "^6.4.5",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.19"
   },
   "name": "tv-track",
