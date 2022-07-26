@@ -46,7 +46,9 @@ const serieSchema = new Schema({
     min: 0,
     max: 10,
   },
-});
+}, {toJSON:{virtuals:true}});
+
+
 
 serieSchema.virtual('episodes', {
   ref: 'Episode',

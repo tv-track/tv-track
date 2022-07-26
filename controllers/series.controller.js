@@ -63,11 +63,12 @@ module.exports.doCreateEpisode = (req, res, next) => {
   const serieData = req.body
   serieData.serie = req.params.serieId
 
-  function renderWithErrors(errors) {      
+  function renderWithErrors(errors, serie) {      
     console.log(serieData)
     res.status(400).render("series/new-episode", {
       serie: serieData,
       episode: req.body,
+      serie,
       errors
     })
   }
@@ -77,22 +78,23 @@ module.exports.doCreateEpisode = (req, res, next) => {
   Serie.findById(req.params.serieId)
       .then((serie) => {
       if (!serie) {
-        renderWithErrors({ serie:"This serie doesn't exist" })
+        renderWithErrors({ serie:"This serie doesn't exist" }, serie)
       } else {
         return Episode.create(serieData)
         .then((episode) => {
           console.log("Episode created");
           res.redirect(`/serie/${req.params.serieId}`);
         })
+        .catch(error => {
+          if(error instanceof mongoose.Error.ValidationError) {
+            renderWithErrors(error.errors, serie)
+          } else {
+            next(error)
+          }
+        })
       }      
     })
-    .catch(error => {
-      if(error instanceof mongoose.Error.ValidationError) {
-        renderWithErrors(error.errors)
-      } else {
-        next(error)
-      }
-    })
+    
 
 
 
