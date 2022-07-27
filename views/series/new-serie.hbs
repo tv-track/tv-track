@@ -1,6 +1,6 @@
 <div class="row justify-content-md-center">
     <div class="col-12 col-md-6 col-lg-3">
-        <h2 class="mt-2">New Serie</h2>
+        <h2 class="mt-2 mb-3" style="text-align: center">New Serie</h2>
         <form action="/new-serie" method="post">
             <div class="input-group mb-3">
                 <input type="text" name="name" value="{{ serie.name }}" class="form-control {{#if errors.name}}is-invalid{{/if}}" placeholder="Serie name">
@@ -27,13 +27,16 @@
             <div class="input-group mb-3">
                 <select name="status" class="form-select" >
                     <option value="Finished">Finished</option>
-                    <option value="Still running">Still running</option>
+                    <option value="Running">Running</option>
+                    <option value="To Be Determined">To Be Determined</option>
                 </select>
             </div>
             <div class="input-group mb-3">
                 <input type="number" name="rating" step="0.1" class="form-control">
             </div>
-        <button type="submit" class="btn btn-primary">Add Serie</button>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Add Serie</button>
+        </div>
         </form>
     </div>
     

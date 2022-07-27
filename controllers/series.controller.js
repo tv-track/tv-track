@@ -36,7 +36,6 @@ module.exports.createSerie = (req, res, next) => {
 };
 
 module.exports.detail = (req, res, next) => {
-
   Serie.findById(req.params.id)
     .populate("episodes")
     .then((serie) => {
@@ -44,14 +43,16 @@ module.exports.detail = (req, res, next) => {
         const data = serie.episodes
           .sort((a, b) => a.season - b.season)
           .reduce((acc, el) => {
-          acc[el.season] = (acc[el.season] || []).sort((a, b) => a.episode - b.episode)
-          acc[el.season].push(el)
-          return acc
-        }, {})
-        const seasonNum = Object.keys(data)
-        console.log(seasonNum)
+            acc[el.season] = (acc[el.season] || []).sort(
+              (a, b) => a.episode - b.episode
+            );
+            acc[el.season].push(el);
+            return acc;
+          }, {});
+        const seasonNum = Object.keys(data);
+        console.log(seasonNum);
         //return res.json(data)
-        res.render("series/series-detail", { serie, data, seasonNum })
+        res.render("series/series-detail", { serie, data, seasonNum });
       } else {
         res.redirect("/");
       }
@@ -62,51 +63,44 @@ module.exports.detail = (req, res, next) => {
 module.exports.createEpisode = (req, res, next) => {
   Serie.findById(req.params.serieId)
     .then((serie) => {
-      res.render("series/new-episode", { serie } );
+      res.render("series/new-episode", { serie });
     })
-    .catch(error => next(error))
+    .catch((error) => next(error));
 };
 
 // a comprobar desde aquí
 module.exports.doCreateEpisode = (req, res, next) => {
-  const serieData = req.body
-  serieData.serie = req.params.serieId
+  const serieData = req.body;
+  serieData.serie = req.params.serieId;
 
-  function renderWithErrors(errors, serie) {      
-    console.log(serieData)
+  function renderWithErrors(errors, serie) {
+    console.log(serieData);
     res.status(400).render("series/new-episode", {
       serie: serieData,
       episode: req.body,
       serie,
-      errors
-    })
+      errors,
+    });
   }
 
- 
-
-  Serie.findById(req.params.serieId)
-      .then((serie) => {
-      if (!serie) {
-        renderWithErrors({ serie:"This serie doesn't exist" }, serie)
-      } else {
-        return Episode.create(serieData)
+  Serie.findById(req.params.serieId).then((serie) => {
+    if (!serie) {
+      renderWithErrors({ serie: "This serie doesn't exist" }, serie);
+    } else {
+      return Episode.create(serieData)
         .then((episode) => {
           console.log("Episode created");
           res.redirect(`/serie/${req.params.serieId}`);
         })
-        .catch(error => {
-          if(error instanceof mongoose.Error.ValidationError) {
-            renderWithErrors(error.errors, serie)
+        .catch((error) => {
+          if (error instanceof mongoose.Error.ValidationError) {
+            renderWithErrors(error.errors, serie);
           } else {
-            next(error)
+            next(error);
           }
-        })
-      }      
-    })
-    
-
-
-
+        });
+    }
+  });
   /* const season = {
     ...req.body,
     serie: req.serie.id,
@@ -118,4 +112,32 @@ module.exports.doCreateEpisode = (req, res, next) => {
       res.redirect("/");
     })
     .catch((error) => next(error)); */
+};
+
+module.exports.delete = (req, res, next) => {
+  Serie.findByIdAndDelete(req.params.serieId)
+    .then(() => {
+      res.redirect("/");
+    })
+    .catch((error) => next(error));
+};
+
+module.exports.update = (req, res, next) => {
+  Serie.findById(req.params.serieId)
+    .then((serie) => {
+      res.render("series/serie-edit", { serie });
+    })
+    .catch((error) => next(error));
+};
+
+module.exports.doUpdate = (req, res, next) => {
+  const { name, image, description, network, platform, status, rating } =
+    req.body;
+  Serie.findByIdAndUpdate(
+    req.params.serieId,
+    { name, image, description, network, platform, status, rating },
+    { new: true }
+  )
+    .then((serie) => res.redirect(`/series/${serie.id}`))
+    .catch((error) => next(error));
 };

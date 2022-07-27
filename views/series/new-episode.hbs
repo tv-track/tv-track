@@ -7,7 +7,7 @@
                 <h2 style="text-align: center;">{{serie.name}}</h2>
             </div>
         </div>
-        <form action="/serie/{{serie.id}}/new-episode" method="post">            
+        <form action="/series/{{serie.id}}/new-episode" method="post">            
             <div class="input-group mb-3">
                 <input type="number" name="season" value="{{ episode.season }}" class="form-control {{#if errors.season}}is-invalid{{/if}}" placeholder="Season number">
                 {{#if errors.season}}<div class="invalid-feedback">{{ errors.season }}</div>{{/if}}
