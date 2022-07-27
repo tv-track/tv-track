@@ -24,18 +24,45 @@
 
   <hr>
 
-  <div class="row">
-    {{#each serie.episodes as |episode|}}    
+  {{!-- <div class="row">
+    {{#each data as |d|}}    
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
           <div class="card mb-3" style="width: 18rem;">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Season: {{episode.season}}</li>
-                <li class="list-group-item">Episode: {{episode.episode}}</li>
-                <li class="list-group-item"><b>{{episode.name}}</b></li>
+                <li class="list-group-item">Season: {{d}}</li>
+                  {{#each d as |episode|}}
+                    <ul>
+                      <li class="list-group-item">Episode: {{episode.episode}}</li>
+                      <li class="list-group-item">Name: {{episode.name}}</li>
+                    </ul>
+                  {{/each}}
               </ul>
           </div>
       </div>
     {{/each}}
+  </div>  --}}
+ 
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      {{#each seasonNum as |season|}} 
+        <h2 class="accordion-header" id="{{season}}">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{season}}" aria-expanded="true" aria-controls="collapse{{season}}">
+            Season: {{season}}
+          </button>
+        </h2>
+      {{/each}}
+      {{#each data  as |d|}} 
+        {{#each d as |episode|}}
+          <div id="collapse{{episode.season}}" class="accordion-collapse collapse" aria-labelledby="heading{{episode.season}}" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Episode: {{episode.episode}}</strong>{{episode.name}}
+            </div>
+          </div>
+        {{/each}}
+      {{/each}}
+    </div>
   </div>
+
+
 
 </div>

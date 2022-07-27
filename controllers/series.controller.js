@@ -48,8 +48,10 @@ module.exports.detail = (req, res, next) => {
           acc[el.season].push(el)
           return acc
         }, {})
-        return res.json(data)
-        res.render("series/series-detail", { serie, data })
+        const seasonNum = Object.keys(data)
+        console.log(seasonNum)
+        //return res.json(data)
+        res.render("series/series-detail", { serie, data, seasonNum })
       } else {
         res.redirect("/");
       }
