@@ -23,7 +23,8 @@
             </div>
             <h6>Platform:</h6>
             <div class="input-group mb-3">
-                <select name="platform" class="form-select" value="{{serie.platform}}">
+                <select name="platform" class="form-select">
+                    <option value="{{serie.platform}}" hidden="hidden" selected="selected">{{serie.platform}}</option>
                     <option value="Movistar+">Movistar+</option>
                     <option value="HBO Max">HBO Max</option>
                     <option value="Netflix">Netflix</option>
@@ -35,8 +36,9 @@
             </div>
             <h6>Status:</h6>
             <div class="input-group mb-3">
-                <select name="status" class="form-select" value="{{serie.status}}">
-                    <option value="Finished">Finished</option>
+                <select name="status" class="form-select">
+                    <option value="{{serie.status}}" hidden="hidden" selected="selected">{{serie.status}}</option>
+                    <option value="Ended">Ended</option>
                     <option value="Running">Running</option>
                     <option value="To Be Determined">To Be Determined</option>
                 </select>
