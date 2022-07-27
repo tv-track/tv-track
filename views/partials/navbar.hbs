@@ -11,15 +11,21 @@
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          {{#if currentUser}}
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/logout">Logout</a>
+          </li>
+          {{else}}
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/register">Register</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" aria-current="page" href="/login">Login</a>
           </li>
+          {{/if}}
           {{#if currentUser.admin}}
           <li class="nav-item">
-            <a class="nav-link active" href="/new-serie">New Serie</a>
+            <a class="nav-link active" aria-current="page" href="/new-serie">New Serie</a>
           </li>
           {{/if}}
         </ul>
