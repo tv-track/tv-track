@@ -90,7 +90,7 @@ module.exports.doCreateEpisode = (req, res, next) => {
       return Episode.create(serieData)
         .then((episode) => {
           console.log("Episode created");
-          res.redirect(`/serie/${req.params.serieId}`);
+          res.redirect(`/series/${req.params.serieId}`);
         })
         .catch((error) => {
           if (error instanceof mongoose.Error.ValidationError) {

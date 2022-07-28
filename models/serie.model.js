@@ -32,10 +32,11 @@ const serieSchema = new Schema({
       "Movistar+",
       "HBO Max",
       "Netflix",
-      "Amazon Prime",
+      "Amazon Prime Video",
       "Disney+",
       "Apple TV",
-      "Others",
+      "Crunchyroll",
+      "Other",
     ],
   },
   status: {
