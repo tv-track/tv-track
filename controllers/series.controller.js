@@ -1,14 +1,6 @@
 const mongoose = require("mongoose");
 const { Serie, Episode } = require("../models");
 
-// module.exports.list = (req, res, next) => {
-//     Serie.find()
-//         .then((series) => {
-//             res.render("index", { series })
-//         })
-//         .catch(error => next(error))
-// };
-
 module.exports.list = (req, res, next) => {
   Serie.find()
     .then((series) => res.render("index", { series }))
@@ -50,7 +42,6 @@ module.exports.detail = (req, res, next) => {
             return acc;
           }, {});
         const seasonNum = Object.keys(data);
-        //return res.json(data)
         res.render("series/series-detail", { serie, data, seasonNum });
       } else {
         res.redirect("/");
@@ -62,7 +53,11 @@ module.exports.detail = (req, res, next) => {
 module.exports.createEpisode = (req, res, next) => {
   Serie.findById(req.params.serieId)
     .then((serie) => {
-      res.render("series/new-episode", { serie });
+      if (serie) {
+        res.render("series/new-episode", { serie });
+      } else {
+        res.redirect("/")
+      }      
     })
     .catch((error) => next(error));
 };
@@ -100,20 +95,9 @@ module.exports.doCreateEpisode = (req, res, next) => {
         });
     }
   });
-  /* const season = {
-    ...req.body,
-    serie: req.serie.id,
-  };
-
-  Season.create(season)
-    .then((season) => {
-      console.log("Season created");
-      res.redirect("/");
-    })
-    .catch((error) => next(error)); */
 };
 
-module.exports.delete = (req, res, next) => {
+module.exports.delete = (req, res, next) => {  
   Serie.findByIdAndDelete(req.params.serieId)
     .then(() => {
       res.redirect("/");
