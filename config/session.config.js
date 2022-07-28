@@ -7,7 +7,7 @@ const session = expressSession({
   secret: process.env.SESSION_SECRET || "super secret",
   resave: false,
   saveUninitialized: false,
-  name: "session cookie",
+  name: "sessionCookie",
   store: MongoStore.create({
     mongoUrl: mongoose.connection._connectionString,
     ttl: 24 * 3600,

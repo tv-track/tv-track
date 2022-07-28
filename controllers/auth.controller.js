@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { User } = require("../models");
+const { session } = require("../config/session.config")
 
 module.exports.register = (req, res, next) => {
   res.render("auth/register");
@@ -64,3 +65,20 @@ module.exports.doLogin = (req, res, next) => {
     })
     .catch((error) => next(error));
 };
+
+
+module.exports.doLogout = (req, res, next) => {  
+  req.session.destroy()
+  res.redirect('/login')
+}
+  
+
+
+
+  /* session.findOne(req.session)
+    .then(() => {
+      req.session.destroy;
+      req.session = null
+      res.redirect("/")
+    })
+    .catch(error => next(error)) */

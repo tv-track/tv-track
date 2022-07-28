@@ -50,7 +50,6 @@ module.exports.detail = (req, res, next) => {
             return acc;
           }, {});
         const seasonNum = Object.keys(data);
-        console.log(seasonNum);
         //return res.json(data)
         res.render("series/series-detail", { serie, data, seasonNum });
       } else {
