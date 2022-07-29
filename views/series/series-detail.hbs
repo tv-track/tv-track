@@ -19,7 +19,8 @@
     </div>
   </div>
 
-  <div class="d-flex justify-content-end mb-3">
+  
+  <div class="d-flex flex-wrap justify-content-end my-3 gap-3">
     {{#if currentUser.admin}}
       <a href="/series/{{serie.id}}/new-episode" class="btn btn-success me-3">New episode</a>
       <a href="/series/{{serie.id}}/edit" class="btn btn-primary me-3">Edit</a>
@@ -84,11 +85,25 @@
         {{#each d as |episode|}}
           <div id="collapse{{episode.season}}" class="accordion-collapse collapse" aria-labelledby="heading{{episode.season}}" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <strong>Episode: {{episode.episode}}</strong>
-              <p>{{episode.name}}</p>
-              <form action="/episodes/{{episode.id}}/delete" method="post">
-                <button type="submit" class="btn btn-danger">X</button>
-              </form>
+              <div class="row">
+                <div class="col-4 col-md-6 col-lg-10">
+                  <strong>Episode: {{episode.episode}}</strong>
+                  <p>{{episode.name}}</p>
+                </div>
+                <div class="col-4 col-md-3 col-lg-1">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Viewed</label>
+                  </div>
+                </div>
+                <div class="col-4 col-md-3 col-lg-1 d-flex justify-content-end">
+                  {{#if ../../currentUser.admin}}
+                    <form action="/episodes/{{episode.id}}/delete" method="post">
+                      <button type="submit" class="btn btn-danger">X</button>
+                    </form>
+                  {{/if}}
+                </div>
+              </div>
             </div>
           </div>
         {{/each}}
