@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { series, auth } = require("../controllers");
+const { series, auth, match } = require("../controllers");
 const secure = require("../middlewares/secure.mid")
 const isUser = secure.isAuthenticated
 const isAdmin = secure.isAdmin
@@ -22,5 +22,7 @@ router.get("/login", auth.login);
 router.post("/login", auth.doLogin);
 
 router.get("/logout", auth.doLogout)
+
+router.post("/series/:serieId/follow", isUser, match.follow)
 
 module.exports = router;
