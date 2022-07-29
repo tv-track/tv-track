@@ -124,3 +124,9 @@ module.exports.doUpdate = (req, res, next) => {
     .then((serie) => res.redirect(`/series/${serie.id}`))
     .catch((error) => next(error));
 };
+
+module.exports.doDeleteEpisode = (req, res, next) => {
+  Episode.findByIdAndDelete(req.params.episodeId)
+    .then(() => res.redirect("back"))
+    .catch(error => next(error))
+}

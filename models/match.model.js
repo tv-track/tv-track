@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-// const {User, Serie} = require("./index")
 
 const matchSchema = new Schema({
   userId: {

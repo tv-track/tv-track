@@ -86,6 +86,9 @@
             <div class="accordion-body">
               <strong>Episode: {{episode.episode}}</strong>
               <p>{{episode.name}}</p>
+              <form action="/episodes/{{episode.id}}/delete" method="post">
+                <button type="submit" class="btn btn-danger">X</button>
+              </form>
             </div>
           </div>
         {{/each}}

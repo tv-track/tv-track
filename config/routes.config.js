@@ -15,6 +15,7 @@ router.post("/series/:serieId/new-episode", isAdmin, series.doCreateEpisode);
 router.post("/series/:serieId/delete", isAdmin, series.delete)
 router.get("/series/:serieId/edit", isAdmin, series.update)
 router.post("/series/:serieId/edit", isAdmin, series.doUpdate)
+router.post("/episodes/:episodeId/delete", isAdmin, series.doDeleteEpisode)
 
 router.get("/register", auth.register);
 router.post("/register", auth.doRegister);
