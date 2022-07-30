@@ -85,3 +85,20 @@ module.exports.profile = (req, res, next) => {
     })
     .catch((error) => next(error));
 };
+
+module.exports.editUser = (req, res, next) => {
+  User.findById(req.user.id)
+    .then((user) => {
+      res.render("user/edit-profile", { user })
+    })
+    .catch(error => next(error))  
+}
+
+module.exports.doEditUser = (req, res, next) => {
+  const { username, email, bio, password} = req.body;
+  User.findByIdAndUpdate(req.user.id, { username, email, bio, password}, {new: true, runValidators: true})
+    .then((user) => {
+      res.redirect(`/users/${user.id}`)
+    })
+    .catch(error => next(error))
+}

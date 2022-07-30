@@ -24,6 +24,8 @@ router.post("/login", auth.doLogin);
 
 router.get("/logout", auth.doLogout)
 router.get("/users/:id", isUser, auth.profile)
+router.get("/users/:id/edit-user", isUser, auth.editUser)
+router.post("/users/:id/edit-user", isUser, auth.doEditUser)
 
 router.post("/series/:serieId/follow", isUser, match.follow)
 
