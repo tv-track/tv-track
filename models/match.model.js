@@ -14,9 +14,3 @@ const matchSchema = new Schema({
 
 const Match = mongoose.model("Match", matchSchema);
 module.exports = Match;
-
-// matchSchema.virtuals("follow", {
-//     ref: "Series",
-//     localField: "_id",
-//     foreignField: "User",
-// })

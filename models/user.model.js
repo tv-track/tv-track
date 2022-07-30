@@ -39,6 +39,12 @@ const userSchema = new Schema({
   },
 });
 
+userSchema.virtual("matches", {
+  ref: "Match",
+  localField: "_id",
+  foreignField: "userId",
+});
+
 userSchema.pre("save", function (next) {
   if (this.isModified("password")) {
     bcrypt
