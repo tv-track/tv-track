@@ -1,44 +1,46 @@
-<div class="row justify-content-md-center">
-    <div class="col-12 col-md-6 col-lg-3">
-        <h2 class="mt-2 mb-3" style="text-align: center">New Serie</h2>
-        <form action="/new-serie" method="post">
-            <div class="input-group mb-3">
-                <input type="text" name="name" value="{{ serie.name }}" class="form-control {{#if errors.name}}is-invalid{{/if}}" placeholder="Serie name">
-                {{#if errors.name}}<div class="invalid-feedback">{{ errors.name }}</div>{{/if}}
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-6 col-lg-3">
+            <h2 class="mt-2 mb-3" style="text-align: center">New Serie</h2>
+            <form action="/new-serie" method="post">
+                <div class="input-group mb-3">
+                    <input type="text" name="name" value="{{ serie.name }}" class="form-control {{#if errors.name}}is-invalid{{/if}}" placeholder="Serie name">
+                    {{#if errors.name}}<div class="invalid-feedback">{{ errors.name }}</div>{{/if}}
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="image" value="{{serie.image}}" class="form-control {{#if errors.image}}is-invalid{{/if}}" placeholder="URL Image">
+                    {{#if errors.image}}<div class="invalid-feedback">{{errors.image}}</div>{{/if}}
+                </div>
+                <div class="input-group mb-3">
+                    <textarea name="description" {{!-- cols="30" --}} rows="10" class="form-control" ></textarea>
+                </div>
+                <div class="input-group mb-3">
+                    <select name="platform" class="form-select" >
+                        <option value="Movistar+">Movistar+</option>
+                        <option value="HBO Max">HBO Max</option>
+                        <option value="Netflix">Netflix</option>
+                        <option value="Amazon Prime">Amazon Prime</option>
+                        <option value="Disney+">Disney+</option>
+                        <option value="Apple TV">Apple TV</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <select name="status" class="form-select" >
+                        <option value="Ended">Ended</option>
+                        <option value="Running">Running</option>
+                        <option value="To Be Determined">To Be Determined</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="number" name="rating" step="0.1" class="form-control">
+                </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Add Serie</button>
             </div>
-            <div class="input-group mb-3">
-                <input type="text" name="image" value="{{serie.image}}" class="form-control {{#if errors.image}}is-invalid{{/if}}" placeholder="URL Image">
-                {{#if errors.image}}<div class="invalid-feedback">{{errors.image}}</div>{{/if}}
-            </div>
-            <div class="input-group mb-3">
-                <textarea name="description" {{!-- cols="30" --}} rows="10" class="form-control" ></textarea>
-            </div>
-            <div class="input-group mb-3">
-                <select name="platform" class="form-select" >
-                    <option value="Movistar+">Movistar+</option>
-                    <option value="HBO Max">HBO Max</option>
-                    <option value="Netflix">Netflix</option>
-                    <option value="Amazon Prime">Amazon Prime</option>
-                    <option value="Disney+">Disney+</option>
-                    <option value="Apple TV">Apple TV</option>
-                    <option value="Others">Others</option>
-                </select>
-            </div>
-            <div class="input-group mb-3">
-                <select name="status" class="form-select" >
-                    <option value="Ended">Ended</option>
-                    <option value="Running">Running</option>
-                    <option value="To Be Determined">To Be Determined</option>
-                </select>
-            </div>
-            <div class="input-group mb-3">
-                <input type="number" name="rating" step="0.1" class="form-control">
-            </div>
-        <div class="d-grid">
-            <button type="submit" class="btn btn-primary">Add Serie</button>
+            </form>
         </div>
-        </form>
+        
+        
     </div>
-    
-    
 </div>

@@ -1,33 +1,35 @@
-<div class="row justify-content-md-center">
-    <div class="col-12 col-md-6 col-lg-3">
-        <h2 class="mt-2 mb-3" style="text-align: center">Register</h2>
-        <form action="/register" method="post">
-            <div class="input-group mb-3">
-                <span class="input-group-text"><i class="fa fa-user fa-fw"></i></span>
-                <input type="text" name="username" value="{{ user.username }}" class="form-control {{#if errors.username}}is-invalid{{/if}}" placeholder="User name">
-                {{#if errors.username}}<div class="invalid-feedback">{{ errors.username }}</div>{{/if}}
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-6 col-lg-3">
+            <h2 class="mt-2 mb-3" style="text-align: center">Register</h2>
+            <form action="/register" method="post">
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-user fa-fw"></i></span>
+                    <input type="text" name="username" value="{{ user.username }}" class="form-control {{#if errors.username}}is-invalid{{/if}}" placeholder="User name">
+                    {{#if errors.username}}<div class="invalid-feedback">{{ errors.username }}</div>{{/if}}
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-envelope fa-fw"></i></span>
+                    <input type="text" name="email" value="{{user.email}}" class="form-control {{#if errors.email}}is-invalid{{/if}}" placeholder="User email">
+                    {{#if errors.email}}<div class="invalid-feedback">{{errors.email}}</div>{{/if}}
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-pencil fa-fw"></i></span>
+                    <textarea name="bio" rows="3" class="form-control" placeholder="Describe yourself"></textarea>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-key fa-fw"></i></span>
+                    <input type="password" name="password" value="{{user.password}}" class="form-control {{#if errors.password}}is-invalid{{/if}}" placeholder="User password">
+                    {{#if errors.password}}<div class="invalid-feedback">{{errors.password}}</div>{{/if}}
+                </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-secondary">Register</button>
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text"><i class="fa fa-envelope fa-fw"></i></span>
-                <input type="text" name="email" value="{{user.email}}" class="form-control {{#if errors.email}}is-invalid{{/if}}" placeholder="User email">
-                {{#if errors.email}}<div class="invalid-feedback">{{errors.email}}</div>{{/if}}
+            </form>
+            <hr>
+            <div class="d-grid">
+                <a href="/login" class="btn btn-primary">Login</a>
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text"><i class="fa fa-pencil fa-fw"></i></span>
-                <textarea name="bio" rows="3" class="form-control" placeholder="Describe yourself"></textarea>
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text"><i class="fa fa-key fa-fw"></i></span>
-                <input type="password" name="password" value="{{user.password}}" class="form-control {{#if errors.password}}is-invalid{{/if}}" placeholder="User password">
-                {{#if errors.password}}<div class="invalid-feedback">{{errors.password}}</div>{{/if}}
-            </div>
-        <div class="d-grid">
-            <button type="submit" class="btn btn-secondary">Register</button>
-        </div>
-        </form>
-        <hr>
-        <div class="d-grid">
-            <a href="/login" class="btn btn-primary">Login</a>
-        </div>
-    </div>  
+        </div>  
+    </div>
 </div>
