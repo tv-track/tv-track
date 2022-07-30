@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const { User } = require("../models");
-const { session } = require("../config/session.config")
+const { User, Match } = require("../models");
+const { session } = require("../config/session.config");
 
 module.exports.register = (req, res, next) => {
   res.render("auth/register");
@@ -66,19 +66,22 @@ module.exports.doLogin = (req, res, next) => {
     .catch((error) => next(error));
 };
 
+module.exports.doLogout = (req, res, next) => {
+  req.session.destroy();
+  res.redirect("/login");
+};
 
-module.exports.doLogout = (req, res, next) => {  
-  req.session.destroy()
-  res.redirect('/login')
-}
-  
-
-
-
-  /* session.findOne(req.session)
-    .then(() => {
-      req.session.destroy;
-      req.session = null
-      res.redirect("/")
+module.exports.profile = (req, res, next) => {
+  User.findById(req.user.id)
+    .populate({
+      path: "matches",
+      populate: {
+        path: 'serieId'
+      }
     })
-    .catch(error => next(error)) */
+    .then((user) => {
+      console.log(user.id)
+      res.render("user/profile-page", { user });
+    })
+    .catch((error) => next(error));
+};
