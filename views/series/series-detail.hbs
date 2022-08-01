@@ -91,10 +91,16 @@
                   <p>{{episode.name}}</p>
                 </div>
                 <div class="col-4 col-md-3 col-lg-1">
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                  <form action="/episodes/{{episode.id}}/viewed" method="post">
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" {{#if viewed}}checked{{/if}}>
+                      <label class="form-check-label" for="flexSwitchCheckDefault">Viewed</label>
+                    </div>
+                  </form>
+                  {{!-- <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" {{#if viewed}}checked{{/if}}>
                     <label class="form-check-label" for="flexSwitchCheckDefault">Viewed</label>
-                  </div>
+                  </div> --}}
                 </div>
                 <div class="col-4 col-md-3 col-lg-1 d-flex justify-content-end">
                   {{#if ../../currentUser.admin}}

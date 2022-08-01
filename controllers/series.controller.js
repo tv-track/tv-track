@@ -29,7 +29,12 @@ module.exports.createSerie = (req, res, next) => {
 
 module.exports.detail = (req, res, next) => {
   Serie.findById(req.params.id)
-    .populate("episodes")
+    .populate({
+      path: "episodes",
+      populate: {
+        path: "viewed"
+      }
+    })
     .then((serie) => {
       if (serie) {
         const data = serie.episodes
@@ -42,7 +47,8 @@ module.exports.detail = (req, res, next) => {
             return acc;
           }, {});
         const seasonNum = Object.keys(data);
-        res.render("series/series-detail", { serie, data, seasonNum });
+        const viewed = serie.episodes.viewed
+        res.render("series/series-detail", { serie, data, seasonNum, viewed });
       } else {
         res.redirect("/");
       }
@@ -97,10 +103,24 @@ module.exports.doCreateEpisode = (req, res, next) => {
   });
 };
 
-module.exports.delete = (req, res, next) => {  
+/* module.exports.delete = (req, res, next) => {  
   Serie.findByIdAndDelete(req.params.serieId)
     .then(() => {
       res.redirect("/");
+    })
+    .catch((error) => next(error));
+}; */
+
+module.exports.delete = (req, res, next) => {  
+  Serie.findById(req.params.serieId)
+    .then((serie) => {
+      return Episode.deleteMany({  serie: serie.id })
+        .then(() => {
+          return Serie.findByIdAndDelete(req.params.serieId) 
+            .then(() => {
+              res.redirect("/");
+            })
+        })      
     })
     .catch((error) => next(error));
 };

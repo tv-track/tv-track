@@ -39,6 +39,12 @@ const episodeSchema = new Schema({
   },
 });
 
+episodeSchema.virtual("viewed", {
+  ref: "User",
+  localField: "_id",
+  foreignField: "episode"
+})
+
 episodeSchema.pre("validate", function (next) {
   this.image = this.image || undefined;
   this.description = this.description || undefined;

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { series, auth, match } = require("../controllers");
+const { series, auth, match, viewed } = require("../controllers");
 const secure = require("../middlewares/secure.mid")
 const isUser = secure.isAuthenticated
 const isAdmin = secure.isAdmin
@@ -28,5 +28,7 @@ router.get("/users/:id/edit-user", isUser, auth.editUser)
 router.post("/users/:id/edit-user", isUser, auth.doEditUser)
 
 router.post("/series/:serieId/follow", isUser, match.follow)
+router.post("/episodes/:episodeId/viewed", isUser, viewed.viewed
+)
 
 module.exports = router;
