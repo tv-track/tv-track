@@ -92,10 +92,15 @@
                 </div>
                 <div class="col-4 col-md-3 col-lg-1">
                   <form action="/episodes/{{episode.id}}/viewed" method="post">
-                    <div class="form-check form-switch">
+                    {{#if ../../viewed}}
+                      <button type="submit" class="btn btn-success me-4">Viewed</button>
+                    {{else}}
+                      <button type="submit" class="btn btn-light me-4">Viewed</button>
+                    {{/if}}
+                    {{!-- <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" {{#if viewed}}checked{{/if}}>
                       <label class="form-check-label" for="flexSwitchCheckDefault">Viewed</label>
-                    </div>
+                    </div> --}}
                   </form>
                   {{!-- <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" {{#if viewed}}checked{{/if}}>

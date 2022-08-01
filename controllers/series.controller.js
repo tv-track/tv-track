@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Serie, Episode } = require("../models");
+const { Serie, Episode, Viewed } = require("../models");
 
 module.exports.list = (req, res, next) => {
   Serie.find()
@@ -32,8 +32,8 @@ module.exports.detail = (req, res, next) => {
     .populate({
       path: "episodes",
       populate: {
-        path: "viewed"
-      }
+        path: "viewed",
+      },
     })
     .then((serie) => {
       if (serie) {
@@ -47,8 +47,14 @@ module.exports.detail = (req, res, next) => {
             return acc;
           }, {});
         const seasonNum = Object.keys(data);
-        const viewed = serie.episodes.viewed
-        res.render("series/series-detail", { serie, data, seasonNum, viewed });
+        const viewed = serie.episodes.viewed;
+        return Viewed.findOne({
+          episodeId: req.params.episodeId,
+          userId: req.user.id
+        })
+          .then((viewed) => {
+            // console.log(user.id)
+            res.render("series/series-detail", { serie, data, seasonNum, viewed })})
       } else {
         res.redirect("/");
       }
@@ -62,8 +68,8 @@ module.exports.createEpisode = (req, res, next) => {
       if (serie) {
         res.render("series/new-episode", { serie });
       } else {
-        res.redirect("/")
-      }      
+        res.redirect("/");
+      }
     })
     .catch((error) => next(error));
 };
@@ -111,16 +117,14 @@ module.exports.doCreateEpisode = (req, res, next) => {
     .catch((error) => next(error));
 }; */
 
-module.exports.delete = (req, res, next) => {  
+module.exports.delete = (req, res, next) => {
   Serie.findById(req.params.serieId)
     .then((serie) => {
-      return Episode.deleteMany({  serie: serie.id })
-        .then(() => {
-          return Serie.findByIdAndDelete(req.params.serieId) 
-            .then(() => {
-              res.redirect("/");
-            })
-        })      
+      return Episode.deleteMany({ serie: serie.id }).then(() => {
+        return Serie.findByIdAndDelete(req.params.serieId).then(() => {
+          res.redirect("/");
+        });
+      });
     })
     .catch((error) => next(error));
 };
@@ -148,5 +152,5 @@ module.exports.doUpdate = (req, res, next) => {
 module.exports.doDeleteEpisode = (req, res, next) => {
   Episode.findByIdAndDelete(req.params.episodeId)
     .then(() => res.redirect("back"))
-    .catch(error => next(error))
-}
+    .catch((error) => next(error));
+};

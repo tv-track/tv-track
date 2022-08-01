@@ -7,6 +7,7 @@ module.exports.viewed = (req, res, next) => {
   };
   Viewed.findOne(viewedCriteria)
     .then((match) => {
+      res.locals.viewed = match
       if (!match) {
         Viewed.create(viewedCriteria)
           .then((match) => {
