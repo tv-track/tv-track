@@ -45,7 +45,11 @@
       </div>      
     {{/if}}
     <form action="/series/{{serie.id}}/follow" method="POST">
-      <button type="submit" class="btn btn-warning me-3">Follow</button>
+    {{#following serie}}
+        <button type="submit" class="btn btn-warning me-3">Unfollow</button>
+    {{else}}
+        <button type="submit" class="btn btn-warning me-3">Follow</button>
+    {{/following}}
     </form>
     <a href="/" class="btn btn-secondary me-5">Go back</a>
   </div>
