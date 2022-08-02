@@ -3,7 +3,11 @@ const { Serie, Episode, Viewed } = require("../models");
 
 module.exports.list = (req, res, next) => {
   Serie.find()
-    .then((series) => res.render("index", { series }))
+    .then((series) => {
+      const randomSeries = series.sort(function() {
+        return Math.random() - 0.5
+      })
+      res.render("index", { randomSeries })})
     .catch((error) => next(error));
 };
 
@@ -37,24 +41,25 @@ module.exports.detail = (req, res, next) => {
     })
     .then((serie) => {
       if (serie) {
-        const data = serie.episodes
+        const seasons = serie.episodes
           .sort((a, b) => a.season - b.season)
-          .reduce((acc, el) => {
-            acc[el.season] = (acc[el.season] || []).sort(
+          .reduce((seasons, episode) => {            
+            seasons[episode.season] = (seasons[episode.season] || [])
+            seasons[episode.season].push(episode);
+            seasons[episode.season].sort(
               (a, b) => a.episode - b.episode
             );
-            acc[el.season].push(el);
-            return acc;
+            return seasons;
           }, {});
-        const seasonNum = Object.keys(data);
+        const seasonNum = Object.keys(seasons);
         const viewed = serie.episodes.viewed;
+
         return Viewed.findOne({
           episodeId: req.params.episodeId,
           userId: req.user.id
         })
           .then((viewed) => {
-            // console.log(user.id)
-            res.render("series/series-detail", { serie, data, seasonNum, viewed })})
+            res.render("series/series-detail", { serie, seasons, seasonNum, viewed })})
       } else {
         res.redirect("/");
       }
@@ -154,3 +159,16 @@ module.exports.doDeleteEpisode = (req, res, next) => {
     .then(() => res.redirect("back"))
     .catch((error) => next(error));
 };
+
+module.exports.search = (req, res, next) => {
+  const search = req.body
+  Serie.findOne(search)
+    .then((serie) => {
+      if (serie){
+      res.redirect(`/series/${serie.id}`)
+      } else {
+        res.redirect("/")
+      }
+    })
+    .catch(error => next(error))
+}

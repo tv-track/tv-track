@@ -16,6 +16,7 @@ router.post("/series/:serieId/delete", isAdmin, series.delete)
 router.get("/series/:serieId/edit", isAdmin, series.update)
 router.post("/series/:serieId/edit", isAdmin, series.doUpdate)
 router.post("/episodes/:episodeId/delete", isAdmin, series.doDeleteEpisode)
+router.post("/series/search", isUser, series.search)
 
 router.get("/register", auth.register);
 router.post("/register", auth.doRegister);
@@ -28,7 +29,6 @@ router.get("/users/:id/edit-user", isUser, auth.editUser)
 router.post("/users/:id/edit-user", isUser, auth.doEditUser)
 
 router.post("/series/:serieId/follow", isUser, match.follow)
-router.post("/episodes/:episodeId/viewed", isUser, viewed.viewed
-)
+router.post("/episodes/:episodeId/viewed", isUser, viewed.viewed)
 
 module.exports = router;

@@ -95,8 +95,10 @@ module.exports.editUser = (req, res, next) => {
 }
 
 module.exports.doEditUser = (req, res, next) => {
-  const { username, email, bio, password} = req.body;
-  User.findByIdAndUpdate(req.user.id, { username, email, bio, password}, {new: true, runValidators: true})
+  const userData = { username, email, bio, password} = req.body;
+  Object.assign(req.user, userData)
+
+  req.user.save()
     .then((user) => {
       res.redirect(`/users/${user.id}`)
     })
