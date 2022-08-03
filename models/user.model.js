@@ -37,7 +37,9 @@ const userSchema = new Schema({
   admin: {
     type: Boolean,
   },
-});
+},
+  { toObject: { virtuals: true } } 
+);
 
 userSchema.virtual("matches", {
   ref: "Match",

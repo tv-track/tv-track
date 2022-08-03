@@ -45,7 +45,7 @@
       </div>      
     {{/if}}
     <form action="/series/{{serie.id}}/follow" method="POST">
-    {{#following serie}}
+    {{#following currentUser serie}}
         <button type="submit" class="btn btn-warning me-3">Unfollow</button>
     {{else}}
         <button type="submit" class="btn btn-warning me-3">Follow</button>
