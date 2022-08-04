@@ -34,7 +34,13 @@
         </ul>
         {{#if currentUser}}
           <form class="d-flex" role="search" method="post" action="/series/search">
-            <input class="form-control me-2" name="name" type="search" placeholder="Search" aria-label="Search">
+            {{!-- <input class="form-control me-2" name="name" type="search" placeholder="Search" aria-label="Search"> --}}
+            <input class="form-control" name="name" list="datalistOptions" id="exampleDataList" placeholder="Serie to search...">
+              <datalist id="datalistOptions">
+                {{#each ../series as |serie|}}
+                <option value="{{serie.name}}">
+                {{/each}}  
+              </datalist>
             <button class="btn btn-success" type="submit">Search</button>
           </form>
         {{/if}}

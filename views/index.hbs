@@ -1,4 +1,19 @@
 <div class="container-fluid">
+  {{#if currentUser}}
+    <div class="container mb-5">
+      <form class="d-flex" role="search" method="post" action="/series/search">
+        {{!-- <input class="form-control me-2" name="name" type="search" placeholder="Search" aria-label="Search"> --}}
+        <input class="form-control" name="name" list="datalistOptions" id="exampleDataList" placeholder="Serie to search...">
+          <datalist id="datalistOptions">
+            {{#each ../series as |serie|}}
+            <option value="{{serie.name}}">
+            {{/each}}  
+          </datalist>
+        <button class="btn btn-success ms-3" type="submit">Search</button>
+      </form>
+    </div>
+  {{/if}}
+
   <div class="row justify-content-center mx-3">
     {{#each randomSeries as |serie|}}
       <div class="col-12 col-sm-6 col-xl-4 col-xxl-3">

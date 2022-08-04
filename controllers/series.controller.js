@@ -7,7 +7,7 @@ module.exports.list = (req, res, next) => {
       const randomSeries = series.sort(function() {
         return Math.random() - 0.5
       })
-      res.render("index", { randomSeries })})
+      res.render("index", { randomSeries, series })})
     .catch((error) => next(error));
 };
 
@@ -113,14 +113,6 @@ module.exports.doCreateEpisode = (req, res, next) => {
     }
   });
 };
-
-/* module.exports.delete = (req, res, next) => {  
-  Serie.findByIdAndDelete(req.params.serieId)
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch((error) => next(error));
-}; */
 
 module.exports.delete = (req, res, next) => {
   Serie.findById(req.params.serieId)

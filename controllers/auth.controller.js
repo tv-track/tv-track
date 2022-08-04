@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { User, Match } = require("../models");
 const { session } = require("../config/session.config");
+let transporter = require("../mail/index")
 
 module.exports.register = (req, res, next) => {
   res.render("auth/register");
@@ -23,7 +24,21 @@ module.exports.doRegister = (req, res, next) => {
         });
       } else {
         const user = req.body;
-        return User.create(user).then((user) => res.redirect("/login"));
+        return User.create(user).then((user) => {
+          transporter.sendMail({
+            from: "TV-Tracker<tvtrackerweb@gmail.com>",
+            to: `${user.email}`,
+            subject: `Welcome ${user.username}` ,
+            html: `<h1>Prueba</h1>
+            <h3>Prueeeeeeeeeeeeba</h3>
+            <img src="https://zachary-jones.com/zambombazo/wp-content/uploads/2020/09/miaucoles_probando_uno_dos_tres_720.jpg" alt="">`
+        })
+            .then(() => console.log("email sent!"))
+            .catch(error => {
+                console.log("error sending mail", error)
+            })
+          res.redirect("/login")
+        })
       }
     })
     .catch((error) => {
