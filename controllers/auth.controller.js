@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const { User, Match } = require("../models");
+const { User } = require("../models");
 const { session } = require("../config/session.config");
-let transporter = require("../mail/index")
+let transporter = require("../mail/index");
 
 module.exports.register = (req, res, next) => {
   res.render("auth/register");
@@ -25,20 +25,21 @@ module.exports.doRegister = (req, res, next) => {
       } else {
         const user = req.body;
         return User.create(user).then((user) => {
-          transporter.sendMail({
-            from: "TV-Tracker<tvtrackerweb@gmail.com>",
-            to: `${user.email}`,
-            subject: `Welcome ${user.username}` ,
-            html: `<h1>Prueba</h1>
+          transporter
+            .sendMail({
+              from: "TV-Tracker<tvtrackerweb@gmail.com>",
+              to: `${user.email}`,
+              subject: `Welcome ${user.username}`,
+              html: `<h1>Prueba</h1>
             <h3>Prueeeeeeeeeeeeba</h3>
-            <img src="https://zachary-jones.com/zambombazo/wp-content/uploads/2020/09/miaucoles_probando_uno_dos_tres_720.jpg" alt="">`
-        })
-            .then(() => console.log("email sent!"))
-            .catch(error => {
-                console.log("error sending mail", error)
+            <img src="https://zachary-jones.com/zambombazo/wp-content/uploads/2020/09/miaucoles_probando_uno_dos_tres_720.jpg" alt="">`,
             })
-          res.redirect("/login")
-        })
+            .then(() => console.log("email sent!"))
+            .catch((error) => {
+              console.log("error sending mail", error);
+            });
+          res.redirect("/login");
+        });
       }
     })
     .catch((error) => {
@@ -71,7 +72,7 @@ module.exports.doLogin = (req, res, next) => {
         return user.checkPassword(password).then((match) => {
           if (match) {
             req.session.userId = user.id;
-            next(res.redirect("/"));
+            res.redirect("/");
           } else {
             renderInvalidLogin();
           }
@@ -91,11 +92,11 @@ module.exports.profile = (req, res, next) => {
     .populate({
       path: "matches",
       populate: {
-        path: 'serieId'
-      }
+        path: "serieId",
+      },
     })
     .then((user) => {
-      console.log(user.id)
+      console.log(user);
       res.render("user/profile-page", { user });
     })
     .catch((error) => next(error));
@@ -104,18 +105,19 @@ module.exports.profile = (req, res, next) => {
 module.exports.editUser = (req, res, next) => {
   User.findById(req.user.id)
     .then((user) => {
-      res.render("user/edit-profile", { user })
+      res.render("user/edit-profile", { user });
     })
-    .catch(error => next(error))  
-}
+    .catch((error) => next(error));
+};
 
 module.exports.doEditUser = (req, res, next) => {
-  const userData = { username, email, bio, password} = req.body;
-  Object.assign(req.user, userData)
+  const userData = ({ username, email, bio, password } = req.body);
+  Object.assign(req.user, userData);
 
-  req.user.save()
+  req.user
+    .save()
     .then((user) => {
-      res.redirect(`/users/${user.id}`)
+      res.redirect(`/users/${user.id}`);
     })
-    .catch(error => next(error))
-}
+    .catch((error) => next(error));
+};

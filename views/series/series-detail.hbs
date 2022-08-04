@@ -74,11 +74,11 @@
               </div>
               <div class="col-4 col-md-3 col-lg-1">
                 <form action="/episodes/{{episode.id}}/viewed" method="post">
-                  {{#if ../../viewed}}
+                  {{#viewed ../../currentUser episode}}
                     <button type="submit" class="btn btn-success me-4">Viewed</button>
                   {{else}}
                     <button type="submit" class="btn btn-light me-4">Viewed</button>
-                  {{/if}}
+                  {{/viewed}}
                 </form>
               </div>
                 <div class="col-4 col-md-3 col-lg-1 d-flex justify-content-end">

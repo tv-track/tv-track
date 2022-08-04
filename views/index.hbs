@@ -1,11 +1,10 @@
 <div class="container-fluid">
     <div class="container my-4">
       <form class="d-flex" role="search" method="post" action="/series/search">
-        {{!-- <input class="form-control me-2" name="name" type="search" placeholder="Search" aria-label="Search"> --}}
         <input class="form-control" name="name" list="series"  placeholder="Serie to search...">
           <datalist id="series">
             {{#each series as |serie|}}
-              <option value="{{serie.name}}">{{serie.name}}</option>
+              <option value="{{serie.name}}">
             {{/each}}  
           </datalist>
         <button class="btn btn-success ms-3" type="submit">Search</button>
@@ -23,7 +22,6 @@
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">{{serie.name}}</h5>
-              {{!-- <p class="card-text">{{serie.description}}</p> --}}
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><b>Network:</b> {{serie.network}}</li>

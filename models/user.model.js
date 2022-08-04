@@ -47,6 +47,12 @@ userSchema.virtual("matches", {
   foreignField: "userId",
 });
 
+userSchema.virtual("viewed", {
+  ref: "Viewed",
+  localField: "_id",
+  foreignField: "userId",
+})
+
 userSchema.pre("save", function (next) {
   if (this.isModified("password")) {
     bcrypt

@@ -7,20 +7,14 @@ module.exports.viewed = (req, res, next) => {
   };
   Viewed.findOne(viewedCriteria)
     .then((match) => {
-      res.locals.viewed = match
+      console.log("hey")
       if (!match) {
-        Viewed.create(viewedCriteria)
-          .then((match) => {
-            res.redirect("back");
-          })
-          .catch(next);
+        return Viewed.create(viewedCriteria)
+          .then((match) => res.redirect("back"))
       } else {
-        match
+        return match
           .delete()
-          .then(() => {
-            res.redirect("back");
-          })
-          .catch(next);
+          .then(() => res.redirect("back"))
       }
     })
     .catch((error) => next(error));

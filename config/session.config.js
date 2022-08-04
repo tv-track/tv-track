@@ -22,7 +22,7 @@ const session = expressSession({
 const loadUser = (req, res, next) => {
   const { userId } = req.session;
   User.findById(userId)
-    .populate("matches")
+    .populate("matches viewed")
     .then((user) => {
       req.user = user;
       res.locals.currentUser = user;

@@ -33,12 +33,7 @@ module.exports.createSerie = (req, res, next) => {
 
 module.exports.detail = (req, res, next) => {
   Serie.findById(req.params.id)
-    .populate({
-      path: "episodes",
-      populate: {
-        path: "viewed",
-      },
-    })
+    .populate("episodes")
     .then((serie) => {
       if (serie) {
         const seasons = serie.episodes
@@ -52,7 +47,6 @@ module.exports.detail = (req, res, next) => {
             return seasons;
           }, {});
         const seasonNum = Object.keys(seasons);
-        const viewed = serie.episodes.viewed;
 
         return Viewed.findOne({
           episodeId: req.params.episodeId,
@@ -79,7 +73,6 @@ module.exports.createEpisode = (req, res, next) => {
     .catch((error) => next(error));
 };
 
-// a comprobar desde aquí
 module.exports.doCreateEpisode = (req, res, next) => {
   const serieData = req.body;
   serieData.serie = req.params.serieId;
