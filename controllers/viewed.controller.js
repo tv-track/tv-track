@@ -7,7 +7,6 @@ module.exports.viewed = (req, res, next) => {
   };
   Viewed.findOne(viewedCriteria)
     .then((match) => {
-      console.log("hey")
       if (!match) {
         return Viewed.create(viewedCriteria)
           .then((match) => res.redirect("back"))
