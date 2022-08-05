@@ -157,3 +157,7 @@ module.exports.search = (req, res, next) => {
     })
     .catch(error => next(error))
 }
+
+module.exports.searchByGenre = (req, res, next) => {
+  
+}

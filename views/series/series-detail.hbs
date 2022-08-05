@@ -11,8 +11,8 @@
           <p class="card-text">{{serie.description}}</p>
           <ul class="list-group list-group-horizontal mt-5">
             <li class="list-group-item">Status: <b>{{serie.status}}</b></li>
-            <li class="list-group-item">Available on: <b>{{serie.platform}}</b></li>
-            <li class="list-group-item">Genre: <b>{{serie.genre}}</b></li>
+            <li class="list-group-item">Available on: {{#each serie.platform as |platform|}}<b> *{{platform}}</b>{{/each}}</li>
+            <li class="list-group-item">Genre: {{#each serie.genre as |genre|}}<b> *{{genre}}</b>{{/each}}</li>
             <li class="list-group-item">Rating: <b>{{serie.rating}}</b></li>
           </ul>
         </div>

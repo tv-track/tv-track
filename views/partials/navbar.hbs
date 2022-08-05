@@ -32,6 +32,27 @@
           </li>
           {{/if}}
         </ul>
+        <div class="mt-4">
+          <form action="/series/search-genre/" method="post">
+            <h4>Search by genre:</h4>
+             <div class="input-group mb-3">
+                <select name="genre" class="form-select">
+                  <option value="Drama">Drama</option>
+                  <option value="Thriller">Thriller</option>
+                  <option value="Sci-fi">Sci-fi</option>
+                  <option value="Comedy">Comedy</option>
+                  <option value="Animation">Animation</option>
+                  <option value="Terror">Terror</option>
+                  <option value="Fantasy">Fantasy</option>
+                  <option value="Action">Action</option>
+                  <option value="Adventure">Adventure</option>
+                </select>
+              </div> 
+              <div class="d-grid mb-5">
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>                  
+          </form>
+        </div>
       </div>
     </div>
   </div>

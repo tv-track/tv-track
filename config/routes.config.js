@@ -17,6 +17,7 @@ router.get("/series/:serieId/edit", isAdmin, series.update)
 router.post("/series/:serieId/edit", isAdmin, series.doUpdate)
 router.post("/episodes/:episodeId/delete", isAdmin, series.doDeleteEpisode)
 router.post("/series/search", isUser, series.search)
+router.post("/series/search-genre", isUser, series.searchByGenre)
 
 router.get("/register", auth.register);
 router.post("/register", auth.doRegister);
