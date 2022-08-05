@@ -27,7 +27,7 @@ const serieSchema = new Schema(
     description: String,
     network: String,
     platform: {
-      type: String,
+      type: [String],
       enum: [
         "Movistar+",
         "HBO Max",
@@ -47,6 +47,18 @@ const serieSchema = new Schema(
       min: 0,
       max: 10,
     },
+    genre: {
+      type: [String],
+      enum: [
+        "Drama",
+        "Thriller",
+        "Sci-fi",
+        "Comedy",
+        "Animation",
+        "Terror",
+        "Fantasy"
+      ]
+    }
   },
   { toJSON: { virtuals: true } }
 );
