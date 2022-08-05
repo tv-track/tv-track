@@ -56,7 +56,9 @@ const serieSchema = new Schema(
         "Comedy",
         "Animation",
         "Terror",
-        "Fantasy"
+        "Fantasy", 
+        "Action",
+        "Adventure"
       ]
     }
   },
