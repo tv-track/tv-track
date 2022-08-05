@@ -1,0 +1,32 @@
+<div class="container-fluid">
+   <div class="row justify-content-center mx-3">
+    {{#each series as |serie|}}
+      <div class="col-12 col-sm-6 col-xl-4 col-xxl-3">
+        <div class="card bg-secondary text-light mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{serie.image}}" class="img-fluid rounded-start" style="height: 280px" alt="Image not available" id="series-img" />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{serie.name}}</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Network:</b> {{serie.network}}</li>
+                <li class="list-group-item"><b>Status:</b> {{serie.status}}</li>
+                <li class="list-group-item"><i class="bi bi-star me-2"></i>{{serie.rating}}</li>
+              </ul>
+              <div class="d-grid align-center my-4">
+                {{#if ...currentUser}}
+                  <a href="/series/{{serie.id}}" class="btn text-light">More about this serie ...</a>
+                {{else}}
+                  <a href="/login" class="btn text-light">More about this serie ...</a>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>

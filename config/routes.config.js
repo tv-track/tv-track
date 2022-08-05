@@ -6,6 +6,7 @@ const isUser = secure.isAuthenticated
 const isAdmin = secure.isAdmin
 
 router.get("/", series.list);
+//router.get("/series/founded", series.founded)
 router.get("/series/:id", isUser, series.detail);
 
 router.get("/new-serie", isAdmin, series.newSerie);
@@ -17,7 +18,8 @@ router.get("/series/:serieId/edit", isAdmin, series.update)
 router.post("/series/:serieId/edit", isAdmin, series.doUpdate)
 router.post("/episodes/:episodeId/delete", isAdmin, series.doDeleteEpisode)
 router.post("/series/search", isUser, series.search)
-router.post("/series/search-genre", isUser, series.searchByGenre)
+router.post("/series/search-genre", series.searchByGenre)
+
 
 router.get("/register", auth.register);
 router.post("/register", auth.doRegister);
