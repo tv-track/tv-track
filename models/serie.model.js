@@ -60,6 +60,21 @@ const serieSchema = new Schema(
         "Action",
         "Adventure"
       ]
+    },
+    trailer: {
+      type: String,
+      default: "https://www.youtube.com/watch?v=oavMtUWDBTM",
+      validate: {
+        validator: function (trailer) {
+          try {
+            new URL(trailer);
+            return true
+          } catch (error) {
+            return false
+          }
+        },
+        message: (trailer) => "Invalid URL",  
+      }
     }
   },
   { toJSON: { virtuals: true } }
@@ -74,6 +89,7 @@ serieSchema.virtual("episodes", {
 serieSchema.pre("validate", function (next) {
   this.image = this.image || undefined;
   this.description = this.description || undefined;
+  this.trailer = this.trailer || undefined;
   next();
 });
 

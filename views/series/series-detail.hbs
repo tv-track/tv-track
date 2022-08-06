@@ -9,6 +9,9 @@
         <div class="card-body">
           <h5 class="card-title">{{serie.name}}</h5>
           <p class="card-text">{{serie.description}}</p>
+          <div class="ratio ratio-16x9">
+            <iframe src="{{serie.trailer}}" alt="Serie trailer" frameborder="0" allowfullscreen></iframe>
+          </div>
           <ul class="list-group list-group-horizontal mt-5">
             <li class="list-group-item">Status: <b>{{serie.status}}</b></li>
             <li class="list-group-item">Available on: {{#each serie.platform as |platform|}}<b> *{{platform}}</b>{{/each}}</li>

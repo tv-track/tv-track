@@ -61,6 +61,11 @@
                 <div class="input-group mb-3">
                     <input type="number" name="rating" step="0.1" class="form-control" value="{{serie.rating}}">
                 </div>
+                <h6>Trailer URL:</h6>
+                <div class="input-group mb-3">
+                    <input type="text" name="trailer" value="{{serie.trailer}}" class="form-control {{#if errors.trailer}}is-invalid{{/if}}">
+                    {{#if errors.trailer}}<div class="invalid-feedback">{{errors.trailer}}</div>{{/if}}
+                </div>
             <div class="d-grid mb-5">
                 <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
