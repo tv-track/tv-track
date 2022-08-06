@@ -13,7 +13,7 @@ module.exports.sendWelcome = (user) => {
         Thank you for your registration at the website. You can writes wherever you want for additional info or to report any bug on this wonderful place for TV lovers.<br>
         You can talk with TV-Tracker Team sending an email to tvtrackerweb@gmail.com. We would be happy to help you. <br>
         <br>
-        <img src="https://i.ibb.co/3Tvq8mD/Tv-trackers.png" alt="Tv-trackers" border="0">
+        <img src="https://i.ibb.co/hgKX36C/Tv-trackers.png" alt="Tv-Trackers" border="0">
         <br>
         <br>
         Happy watching!

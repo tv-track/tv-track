@@ -12,12 +12,14 @@
           <div class="ratio ratio-16x9">
             <iframe width="560" height="315" src="{{serie.trailer}}" alt="Serie trailer" frameborder="0" allowfullscreen></iframe>
           </div>
-          <ul class="list-group list-group-horizontal mt-5">
-            <li class="list-group-item">Status: <b>{{serie.status}}</b></li>
-            <li class="list-group-item">Available on: {{#each serie.platform as |platform|}}<b> *{{platform}}</b>{{/each}}</li>
-            <li class="list-group-item">Genre: {{#each serie.genre as |genre|}}<b> *{{genre}}</b>{{/each}}</li>
-            <li class="list-group-item">Rating: <b>{{serie.rating}}</b></li>
-          </ul>
+          {{!-- <div class="d-flex flex-wrap"> --}}
+            <ul class="list-group list-group-horizontal mt-5 d-flex flex-wrap justify-content-center">
+              <li class="list-group-item">Status: <b>{{serie.status}}</b></li>
+              <li class="list-group-item">Available on: {{#each serie.platform as |platform|}}<b> *{{platform}}</b>{{/each}}</li>
+              <li class="list-group-item">Genre: {{#each serie.genre as |genre|}}<b> *{{genre}}</b>{{/each}}</li>
+              <li class="list-group-item">Rating: <b>{{serie.rating}}</b></li>
+            </ul>
+          {{!-- </div> --}}
         </div>
       </div>
     </div>
