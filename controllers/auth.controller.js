@@ -85,7 +85,6 @@ module.exports.profile = (req, res, next) => {
       },
     })
     .then((user) => {
-      console.log(user);
       res.render("user/profile-page", { user });
     })
     .catch((error) => next(error));

@@ -21,22 +21,3 @@ module.exports.follow = (req, res, next) => {
     })
     .catch((error) => next(error));
 };
-
-// module.exports.follow = (req, res, next) => {
-//     Match.findOne({ serieId: req.params.serieId, userId: req.user.id  })
-//       .then((match) => {
-//           if (!match) {
-//               const match = new Match({
-//                   serieId: req.params.serieId,
-//                   userId: req.user.id,
-//               })
-//               match.save()
-//                   .then(matches => res.redirect('back'))
-//           } else {
-//               return Match.findByIdAndDelete(match.id)
-//                       .then(() => res.redirect('back'))
-
-//           }
-//       })
-//       .catch(error => next(error))
-//   };

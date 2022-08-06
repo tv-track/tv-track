@@ -78,7 +78,6 @@ module.exports.doCreateEpisode = (req, res, next) => {
   serieData.serie = req.params.serieId;
 
   function renderWithErrors(errors, serie) {
-    console.log(serieData);
     res.status(400).render("series/new-episode", {
       serie: serieData,
       episode: req.body,
@@ -160,15 +159,9 @@ module.exports.search = (req, res, next) => {
 
 module.exports.searchByGenre = (req, res, next) => {
   const genre = req.body.genre
-  console.log(genre)
   Serie.find({genre: {$in: [genre]}})
     .then((series) => {
-      console.log(series)
-      res.render("series/founded", { series })
+      res.render("series/founded", { series, genre })
     })
     .catch(error => next(error))
 }
-
-/* module.exports.founded = (req, res, next) => {
-  res.render("series/founded")
-} */

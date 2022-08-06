@@ -22,12 +22,12 @@
                     <input type="password" name="password" value="{{user.password}}" class="form-control {{#if errors.password}}is-invalid{{/if}}" placeholder="User password">
                     {{#if errors.password}}<div class="invalid-feedback">{{errors.password}}</div>{{/if}}
                 </div>
-            <div class="d-grid">
+            <div class="d-grid my-3">
                 <button type="submit" class="btn btn-secondary">Register</button>
             </div>
             </form>
             <hr>
-            <div class="d-grid">
+            <div class="d-grid mb-5">
                 <a href="/login" class="btn btn-primary">Login</a>
             </div>
         </div>  

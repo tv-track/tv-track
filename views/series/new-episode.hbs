@@ -21,7 +21,7 @@
                     <input type="text" name="name" value="{{ episode.name }}" class="form-control {{#if errors.name}}is-invalid{{/if}}" placeholder="Episode name">
                     {{#if errors.name}}<div class="invalid-feedback">{{ errors.name }}</div>{{/if}}
                 </div>
-                <div class="d-grid">
+                <div class="d-grid mb-5">
                     <button type="submit" class="btn btn-primary">Add episode</button>
                 </div>        
             </form>

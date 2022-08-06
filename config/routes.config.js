@@ -6,7 +6,6 @@ const isUser = secure.isAuthenticated
 const isAdmin = secure.isAdmin
 
 router.get("/", series.list);
-//router.get("/series/founded", series.founded)
 router.get("/series/:id", isUser, series.detail);
 
 router.get("/new-serie", isAdmin, series.newSerie);
