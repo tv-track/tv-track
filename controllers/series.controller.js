@@ -127,11 +127,11 @@ module.exports.update = (req, res, next) => {
 };
 
 module.exports.doUpdate = (req, res, next) => {
-  const { name, image, description, network, platform, status, rating, genre } =
+  const { name, image, description, network, platform, status, rating, genre, trailer } =
     req.body;
   Serie.findByIdAndUpdate(
     req.params.serieId,
-    { name, image, description, network, platform, status, rating, genre },
+    { name, image, description, network, platform, status, rating, genre, trailer },
     { new: true }
   )
     .then((serie) => res.redirect(`/series/${serie.id}`))

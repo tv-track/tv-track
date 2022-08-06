@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const { User } = require("../models");
 const { session } = require("../config/session.config");
 const mailer = require("../mail/mailer")
-let transporter = require("../config/mail.config");
 
 module.exports.register = (req, res, next) => {
   res.render("auth/register");

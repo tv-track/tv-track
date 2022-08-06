@@ -63,7 +63,7 @@ const serieSchema = new Schema(
     },
     trailer: {
       type: String,
-      default: "https://www.youtube.com/watch?v=oavMtUWDBTM",
+      default: "https://www.youtube.com/embed/IVqUecYGnoM",
       validate: {
         validator: function (trailer) {
           try {
