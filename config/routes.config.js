@@ -35,5 +35,6 @@ router.post("/episodes/:episodeId/viewed", isUser, viewed.viewed);
 router.get("/about/us", about.aboutUs);
 router.get("/about/ivan", about.aboutIvan);
 router.get("/about/adrian", about.aboutAdrian);
+router.get("/about/:someone", about.error)
 
 module.exports = router;

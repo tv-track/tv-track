@@ -9,3 +9,7 @@ module.exports.aboutIvan = (req, res, next) => {
 module.exports.aboutAdrian = (req, res, next) => {
   res.render("about/adrian");
 };
+
+module.exports.error = (req, res, next) => {
+  res.redirect("/")
+}
