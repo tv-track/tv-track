@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-12 col-md-6 col-lg-3">
-            <h2 class="mt-2 mb-3" style="text-align: center">New Serie</h2>
+            <h2 class="mt-2 mb-3 text-light" style="text-align: center">New Serie</h2>
             <form action="/new-serie" method="post">
                 <div class="input-group mb-3">
                     <input type="text" name="name" value="{{ serie.name }}" class="form-control {{#if errors.name}}is-invalid{{/if}}" placeholder="Serie name">
@@ -33,7 +33,7 @@
                     </select>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="number" name="rating" step="0.1" class="form-control">
+                    <input type="number" name="rating" step="0.1" class="form-control" placeholder="IMDB Rating">
                 </div>
             <div class="d-grid mb-5">
                 <button type="submit" class="btn btn-primary">Add Serie</button>
