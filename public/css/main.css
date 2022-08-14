@@ -14,8 +14,10 @@
 #footer {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 50%;
   height: auto;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 .carousel .carousel-item {
@@ -29,4 +31,12 @@
   left: 0;
   min-height: 500px;
   max-height: 550px;
+}
+
+#btn-back-to-top {
+  z-index: 1;
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  display: none;
 }
