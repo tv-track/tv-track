@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { User } = require("../models");
-const { session } = require("../config/session.config");
 const mailer = require("../mail/mailer")
 
 module.exports.register = (req, res, next) => {

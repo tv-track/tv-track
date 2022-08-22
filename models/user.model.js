@@ -22,7 +22,6 @@ const userSchema = new Schema({
     required: "Email is required",
     trim: true,
     lowercase: true,
-    // unique: [true, "This email is already used"],
     match: [EMAIL_PATTERN, "Invalid email"],
   },
   bio: {

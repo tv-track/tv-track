@@ -15,7 +15,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-key fa-fw"></i></span>
-                    <input type="password" name="password" id="password" value="{{user.password}}" class="form-control {{!-- {{#if errors.password}}is-invalid{{/if}} --}}" placeholder="User password">
+                    <input type="password" name="password" id="password" value="{{user.password}}" class="form-control" placeholder="User password">
                     {{#if errors.password}}<div class="invalid-feedback">{{errors.password}}</div>{{/if}}
                     <span class="input-group-text"><i class="fa fa-eye fa-fw" onclick="showPassword()"></i></span>
                 </div>
